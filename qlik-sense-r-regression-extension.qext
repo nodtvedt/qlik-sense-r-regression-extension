@@ -1,5 +1,5 @@
 {
-	"name" : "R - multi-factor regression",
+	"name" : "Open CPU and R - multi-factor regression",
 	"description" : "Multi-factor regression using R's lm() function.",
 	"icon" : "extension",
 	"type" : "visualization",

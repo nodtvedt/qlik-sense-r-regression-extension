@@ -13,7 +13,6 @@ define( [], function () {
 		max: 1
 	};
 	
-	// Use this technique for the URL to the web service
 	var header1_item1 = {
 		ref: "props.section1.item1",
 		label: "Open CPU server URL",
@@ -21,9 +20,10 @@ define( [], function () {
 		expression: "optional"
 	};
 
+	// This one is from when I tried to get this to be a flexible module that took R commands as a parameter
 	var header1_item2 = {
 		ref: "props.section1.item2",
-		label: "Open CPU command",
+		label: "Open CPU server url",
 		type: "string",
 		expression: "optional"
 	};
@@ -39,33 +39,11 @@ define( [], function () {
 	// Use this technique for parameters to the relevant R snippet
 	var myCustomSection = {
 		component: "expandable-items",
-		label: "R command",
+		label: "R configuration",
 		items: {
-			header1: {
-				type: "items",
-				label: "Open CPU parameters",
-				items: {
-					header1_item1: header1_item1,
-					header1_item2: header1_item2,
-					header1_item3: header1_item3
-				}
-			}
+			header1_item1: header1_item1
 		}
 	};
-	
-	// var mycustomsection = {
-		// component: "expandable-items",
-		// label: "r command",
-			// header1: {
-				// type: "items",
-				// label: "open cpu parameters",
-				// items: {
-					// header1_item1: header1_item1,
-					// header1_item2: header1_item2
-			// }
-		// }
-	// };
-
 	
 	return {
 		type: "items",
@@ -77,13 +55,14 @@ define( [], function () {
 			measures: {
 				uses: "measures"
 			},
-			sorting: {
-				uses: "sorting"
-			},
+			grouping: header1_item3,
+			customSection: header1_item1,
 			appearance: {
 				uses: "settings"
-			},
-			customSection: myCustomSection
+			}
+		},
+		snapshot: {
+			canTakeSnapshot: true
 		}
 	};
 } );

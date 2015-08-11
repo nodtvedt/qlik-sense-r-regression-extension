@@ -1,7 +1,7 @@
 define( [
 		'./properties',
 		'jquery',
-		'./opencpu'
+		'./javascript/opencpu-0.5'
 	],
 	function ( props ) {
 		'use strict';
@@ -16,7 +16,7 @@ define( [
 				qInitialDataFetch: [
 					{
 						qWidth: 10,
-						qHeight: 50
+						qHeight: 1000
 					}
 				]
 			}
@@ -45,11 +45,16 @@ define( [
 			}
 			
 			// Create the regression formula to pass to R's lm function.
-			var r_formula = layout.qHyperCube.qMeasureInfo[0].qFallbackTitle +  '~'
-				+ r_analysis_axes.join( '+' );
+			var measurename = layout.qHyperCube.qMeasureInfo[0].qFallbackTitle;
 			
-			r_data.push(layout.qHyperCube.qMeasureInfo[0].qFallbackTitle)
-			r_columns[layout.qHyperCube.qMeasureInfo[0].qFallbackTitle] = [];
+			measurename = measurename.replace(/\W+/g, "_"); // Avoid confusing R by removing non-alphanumeric characters from measure.
+			measurename = measurename.replace(/_$/, ''); // Remove trailing '_' for teh pretties.
+
+			var r_formula = measurename +  '~'
+				+ r_analysis_axes.join( '+' );
+				
+			r_data.push(measurename)
+			r_columns[measurename] = [];
 			
 			r_dimensions.push(layout.qHyperCube.qDimensionInfo.length);
 		
@@ -70,39 +75,45 @@ define( [
 
 			// Read some parameters from the Sense Extension and construct the Open CPU service URL and command
 			var url = layout.props.section1.item1;
-			var command = url + layout.props.section1.item2;
-
-			// ocpu.seturl("https://public.opencpu.org/ocpu/library/stats/R")			
-			// url = "https://public.opencpu.org";			
-			ocpu.seturl(command)
 			
-			// Pass the structured data and formula to lm
-			var req = $element.rplot(
-				"lm",
-				{
-					formula : r_formula,
-					data : r_columns
-				},
-				function(output){
-					$element.empty();
+			if(url === undefined || url === null || url == '') {
+				$element.append('<p>Please use a valid Open CPU server URL parameter. You <i>could</i> use https://public.opencpu.org, but you <i>should</i> use a local installation to keep track of your own CPU usage.</p>');
+			}
+			else {
+				// url = "https://public.opencpu.org";			
+				url = url.replace(/\/?$/, '/');
+				var command = url + 'ocpu/library/stats/R';
 
-					
-					var innerurl = url + output.output[0];
+				ocpu.seturl(command)
+				
+				// Pass the structured data and formula to lm
+				var req = $element.rplot(
+					"lm", // This is the magic R function that does multi-factor regressions. Check ?lm in an R console for help
+					{
+						formula : r_formula,
+						data : r_columns
+					},
+					function(output){
+						$element.empty();
 
-					$.ajax({
-						type: "get",
-						url: innerurl,
 						
-						success: function(inner) {$element.append('<pre>' + inner + '</pre>')},
-						error: function(einner) {console.log(einner); $element.append( 'Failed to retrieve result.' )}
-					
-					})
-				}); 			
-			
-			// Catch error from rplot and say something hopefully useful
-			req.fail(function(){
-				$element.append("<pre>R returned an error: " + req.responseText + '</pre>'); 
-			});
+						var innerurl = url + output.output[0];
+
+						$.ajax({
+							type: "get",
+							url: innerurl,
+							
+							success: function(inner) {$element.append('<pre>' + inner + '</pre>')},
+							error: function(einner) {console.log(einner); $element.append( 'Failed to retrieve result.' )}
+						
+						})
+					}); 			
+				
+				// Catch error from rplot and say something hopefully useful
+				req.fail(function(){
+					$element.append("<pre>R returned an error: " + req.responseText + '</pre>'); 
+				});
+			}
 		}
 	};
 });

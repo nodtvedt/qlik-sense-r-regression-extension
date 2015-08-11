@@ -408,7 +408,7 @@ if(!window.jQuery) {
                 xhr.setRequestHeader("Authorization", "Basic " + btoa(r_path.username + ":" + r_path.password));
 
                 /* debug */
-//                console.log("Authenticated request to: " + settings.url + " (" + r_path.username + ", " + r_path.password + ")")
+                console.log("Authenticated request to: " + settings.url + " (" + r_path.username + ", " + r_path.password + ")")
               }
             }
           });
@@ -427,7 +427,7 @@ if(!window.jQuery) {
 
       //CORS disallows redirects.
       return $.get(r_path.href + "/", function(resdata){
-//        console.log("Path updated. Available objects/functions:\n" + resdata);
+//        console.log("Path updated. Available objects/functions:\n" + resdata); // Per Christian Nødtvedt: This one spams the console log for me ....
 
       }).fail(function(xhr, textStatus, errorThrown){
         alert("Connection to OpenCPU failed:\n" + textStatus + "\n" + xhr.responseText + "\n" + errorThrown);
