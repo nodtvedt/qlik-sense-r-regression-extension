@@ -1,0 +1,9 @@
+{
+	"name" : "R - multi-factor regression",
+	"description" : "Multi-factor regression using R's lm() function.",
+	"icon" : "extension",
+	"type" : "visualization",
+	"version" : "0.1",
+	"preview" : "bar",
+	"author" : "Per Christian Nødtvedt"
+}
