@@ -14,12 +14,19 @@ Download and unpack, then follow [these steps](http://help.qlik.com/sense/2.0/en
 
 Select the dimensions you would like to use for the regression. Since the hypercube aggregates on the dimensions, it is possible to indicate that one dimension is a grouping dimension. In that case it will not be included in the regression model.
 
-![](screens/dimensions.PNG)
-![](screens/group_by.PNG)
+| Explanatory variables | Grouping parameter (ignored dimension) |
+| ---------- | -------- |
+|![](screens/dimensions.PNG)|![](screens/group_by.PNG)|
 
 Select the measure on which you want to run the regression. Since Sense wants an aggregation function on measures, there's a bit of name scrubbing in the background to avoid confusing R.
 
 ![](screens/measures.PNG)
+
+Given the parameters chosen in the screenshots above, the extension will generate the following regression formula to pass to R:
+
+```
+Sum_performance ~ mkt_rf + smb + hml
+```
 
 Choose an Open CPU server. For testing purposes, I suppose you could use the public server on https://public.opencpu.org, but you really, <i>really</i>, <b><i>really</i></b> should set up your own server should you decide to use this for anything more than playing with the interface.
 
@@ -47,7 +54,8 @@ The data extraction from the hypercube isn't very robust at the moment. If you s
 # Thanks to
 
 * [Jeroen Ooms](https://github.com/jeroenooms) for [Open CPU](https://www.opencpu.org/) and [opencpu.js](https://github.com/jeroenooms/opencpu.js).
-* [Stefan Walther](https://github.com/stefanwalther) for [qliksense-extension-tutorial](https://github.com/stefanwalther/qliksense-extension-tutorial)
+* [Stefan Walther](https://github.com/stefanwalther) for [qliksense-extension-tutorial](https://github.com/stefanwalther/qliksense-extension-tutorial).
+* Jeff Koch, who presented session [T60 Integrating Qlik with R (link required Qlik partner login)](https://eu1.salesforce.com/sfc/#version?selectedDocumentId=069D0000002TA38) at [Qonnections 2015](http://www.qlik.com/us/landing/qonnections-2015), which showed that this was possible and provided pointers to Open CPU.
 
 # Disclaimer
 
