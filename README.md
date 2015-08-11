@@ -2,9 +2,9 @@
 
 > Simple proof of concept Qlik Sense Extension to connect a Qlik Sense hypercube to an [Open CPU R web service](https://www.opencpu.org/).
 
-The extension creates a regression formula based on the Qlik Sense hypercube, and passes the formula and the contents of the hypercube to the R function lm() on an Open CPU web service.
+The extension creates a regression formula based on the Qlik Sense hypercube, and passes the formula and the contents of the hypercube to the R function [lm()](http://www.rdocumentation.org/packages/stats/functions/lm) on an Open CPU web service.
 
-As of now, the visualisation of the results is bare-bones at best (and now I'm being generous).
+As of now, the visualisation of the results is somewhat bare-bones (and now I'm being generous).
 
 # Installation
 
@@ -18,7 +18,7 @@ Select the dimensions you would like to use for the regression. Since the hyperc
 | ---------- | -------- |
 |![](screens/dimensions.PNG)|![](screens/group_by.PNG)|
 
-Select the measure on which you want to run the regression. Since Sense wants an aggregation function on measures, there's a bit of name scrubbing in the background to avoid confusing R.
+Select the measure on which you want to run the regression. Since Sense wants an aggregation function on measures, there's a bit of name scrubbing in the background to avoid confusing R (all non-alphanumeric characters are replaced with underscore _).
 
 ![](screens/measures.PNG)
 
@@ -28,7 +28,7 @@ Given the parameters chosen in the screenshots above, the extension will generat
 Sum_performance ~ mkt_rf + smb + hml
 ```
 
-Choose an Open CPU server. For testing purposes, I suppose you could use the public server on https://public.opencpu.org, but you really, <i>really</i>, <b><i>really</i></b> should set up your own server should you decide to use this for anything more than playing with the interface.
+Choose an Open CPU server. For testing purposes, I suppose you could use the public server on https://public.opencpu.org, but you really, *really*, **_really_** should set up your own server should you decide to use this for anything more than playing with the interface. The screenshot below shows the extension pointing to a local server running the Open CPU service.
 
 ![](screens/opencpu_url.PNG)
 
