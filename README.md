@@ -49,13 +49,14 @@ The data extraction from the hypercube isn't very robust at the moment. If you s
 
 * There's room for making the presentation a bit nicer. To put it mildly.
 * It might be interesting to send the factors back as parameters to the Sense model, so they could be used elsewhere.
-* Using skokenes' [senseUtils](https://github.com/skokenes/senseUtils) to grab the hypercube would be smart.
+* Using skokenes' [senseUtils](https://github.com/skokenes/senseUtils.pageExtensionData) to work with larger datasets.
 
 # Thanks to
 
 * [Jeroen Ooms](https://github.com/jeroenooms) for [Open CPU](https://www.opencpu.org/) and [opencpu.js](https://github.com/jeroenooms/opencpu.js).
 * [Stefan Walther](https://github.com/stefanwalther) for [qliksense-extension-tutorial](https://github.com/stefanwalther/qliksense-extension-tutorial).
 * Jeff Koch, who presented session [T60 Integrating Qlik with R (link required Qlik partner login)](https://eu1.salesforce.com/sfc/#version?selectedDocumentId=069D0000002TA38) at [Qonnections 2015](http://www.qlik.com/us/landing/qonnections-2015), which showed that this was possible and provided pointers to Open CPU.
+* [Speros Kokenes](https://github.com/skokenes) for [senseUtils.js](https://github.com/skokenes/senseUtils).
 
 # Disclaimer
 
