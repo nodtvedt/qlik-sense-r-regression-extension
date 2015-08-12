@@ -56,6 +56,7 @@ define( [
 			// Use senseUtils to squash multiple data pages into one large matrix
 			var r_matrix = senseUtils.flattenPages(layout.qHyperCube.qDataPages);
 
+			// The data structure where we want to keep our column_name: column_contents[]. Initialise for the column_names.
 			var r_dataframe = {};
 			for(var column_name of keymap.values()) {
 				r_dataframe[column_name] = [];
@@ -72,7 +73,7 @@ define( [
 					}
 
 				}
-			}			
+			}
 			
 			// Read some parameters from the Sense Extension and construct the Open CPU service URL and command
 			var url = layout.props.section1.item1;
