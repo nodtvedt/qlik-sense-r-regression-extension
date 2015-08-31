@@ -44,6 +44,9 @@ Dead sexy, ya? Since we're talking to the hypercube, you can select dimensions i
 
 The data extraction from the hypercube isn't very robust at the moment. If you send off millions of rows, you're unlikely to get the result you expect. See todo list.
 
+#Demo
+
+There's a simple [.qvf file in the demo folder](demo/R demo.qvf) in the repository, which includes a small dataset and a setup that runs a three factor regression.
 
 #To do
 
