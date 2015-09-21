@@ -52,7 +52,6 @@ There's a simple [.qvf file in the demo folder](demo/R demo.qvf) in the reposito
 
 * There's room for making the presentation a bit nicer. To put it mildly.
 * It might be interesting to send the factors back as parameters to the Sense model, so they could be used elsewhere.
-* Using skokenes' [senseUtils](https://github.com/skokenes/senseUtils.pageExtensionData) to work with larger datasets.
 
 # Thanks to
 
