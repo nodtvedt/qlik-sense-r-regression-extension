@@ -8,7 +8,7 @@ As of now, the visualisation of the results is somewhat bare-bones (and now I'm 
 
 # Installation
 
-Download and unpack, then follow [these steps](http://help.qlik.com/sense/2.0/en-US/developer/#../Subsystems/Extensions/Content/Howtos/deploy-extensions.htm%3FTocPath%3DBuilding%2520visualization%2520extensions%7CWorking%2520with%2520visualization%2520extensions%7C_____9).
+Download and unpack, then follow [these steps](http://help.qlik.com/en-US/sense/3.0/Subsystems/ManagementConsole/Content/import-extensions.htm).
 
 #Using the module
 
